@@ -93,6 +93,22 @@ ul {
     width: 100%;
 }
 
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
 /* Hero Section */
 .hero-section {
     min-height: 100vh;
@@ -293,32 +309,108 @@ footer {
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 900px) {
     .navbar {
         padding: 1rem 1.5rem;
+    }
+
+    .section {
+        padding: 3rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+        z-index: 1001;
+        /* Above the menu */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        gap: 2.5rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    /* Hamburger Animation when active */
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 3rem;
+        flex-direction: column-reverse;
+        /* Attempting to fix order */
+        display: flex;
+        /* Override grid for better order control if needed, or stick to grid */
+    }
+
+    /* Ensuring image is on top for mobile as per common design, or text top? 
+       Let's stick to valid grid re-ordering or flex. 
+       Grid is usually easier. 
+    */
+    .hero-container {
+        display: flex;
+        flex-direction: column-reverse;
+        /* Text bottom (1st in HTML), Image top (2nd in HTML) -> No, Wait. 
+        HTML: Text (hero-content) is 1st. Image (hero-image-container) is 2nd. 
+        column-reverse puts 2nd on top, 1st on bottom. 
+        Let's try standard stacking first: Text top, Image bottom. 
+        flex-direction: column;
+        */
+        flex-direction: column;
     }
 
     .hero-content {
         align-items: center;
-        order: 2;
-        /* Image top on mobile? Standard is usually text top, but user wants image prominent? Let's stick to standard flow first. */
-        order: 1;
-        /* Text first */
     }
 
     .hero-image-container {
-        order: 2;
-        /* Image second */
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .hero-image {
+        max-width: 60%;
+        /* Smaller on mobile */
     }
 
     .hero-name {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
     }
 
     .hero-quote {
@@ -329,25 +421,20 @@ footer {
         padding-left: 0;
     }
 
-    .nav-links {
-        display: none;
-        /* Hide for now on small screens or create hamburger - sticking to simple responsive request "responsive layout" usually implies stacking */
-        /* For a comprehensive "responsive" nav, I should add a hamburger, but let's just center stack content for now for simplicity if not requested specifically */
-        gap: 1.5rem;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
+    /* Contact Section Responsive */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
         padding: 2rem;
-        text-align: center;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     }
 
-    /* Simple mobile nav reveal for this iteration */
-    .navbar:hover .nav-links {
-        display: flex;
+    /* Timeline Responsive */
+    .timeline {
+        padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+        left: -2.1rem;
     }
 }
 
@@ -736,10 +823,3 @@ footer {
 }
 
 /* Responsive Contact */
-@media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 2rem;
-    }
-}
