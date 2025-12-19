@@ -1,87 +1,552 @@
-*{
+:root {
+    --bg-color: #F5F5F5;
+    --text-color: #1A2A44;
+    --highlight-color: #FFB400;
+    --card-bg: #FFFFFF;
+    --subtext-color: #556677;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --font-main: 'Poppins', 'Inter', sans-serif;
+}
+
+* {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    box-sizing: border-box;
 }
-.hero{
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: rgb(76, 116, 71);
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
-img{
-    width: 150px;
-    border-radius: 25px;
+
+html {
+    scroll-behavior: smooth;
 }
-nav{
-    display: flex;
-    width: 84%;
-    margin: auto;
-    padding: 20px 0;
-    align-items: center;
-    justify-content: space-between;
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
 }
-nav ul li{
-    display: inline-block;
+
+ul {
     list-style: none;
-    margin: 10px 20px;
 }
-nav ul li a{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    /* Changed to span full width but aligned right content */
+    padding: 1.5rem 3rem;
+    z-index: 1000;
+    background: rgba(245, 245, 245, 0.95);
+    backdrop-filter: blur(10px);
 }
-nav ul li a:hover{
-    color: #212121;
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
-.detail{
-    margin-left: 8%;
-    margin-top: 13%;
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.02em;
 }
-.detail h1{
-    font-size: 50px;
-    color: whitesmoke;
-    margin-bottom: 20px;
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
 }
-span{
-    color:#212121 ;
+
+.nav-links a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: 0.25rem;
 }
-.detail a{
-    background: #212121;
-    padding: 10px 18px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #fff;
-    display: inline-block;
-    margin: 30px 0;
-    border-radius: 5px;
-}
-.images{
-    width: 40%;
-    height: 80%;
+
+.nav-links a::after {
+    content: '';
     position: absolute;
     bottom: 0;
-    right: 100px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--highlight-color);
+    transition: width 0.3s ease;
 }
-.images img {
-    height: 70%;
-    width: 70%;
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem 2rem;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    gap: 4rem;
+    padding: 0 2rem;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-name {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.hero-role {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--subtext-color);
+    margin-bottom: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-quote {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--highlight-color);
+    max-width: 90%;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.social-icons a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #E0E0E0;
+    color: var(--subtext-color);
+    font-size: 1.25rem;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    border-color: var(--highlight-color);
+    color: var(--highlight-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Star Button */
+.star-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #ffffff;
+    border-radius: 50px;
+    font-weight: 600;
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    background-color: transparent;
+    border-radius: 50px;
+    font-weight: 600;
+    color: var(--subtext-color);
+    border: 1px solid #E0E0E0;
+    transition: all 0.3s ease;
+}
+
+.resume-btn:hover {
+    border-color: var(--highlight-color);
+    color: var(--highlight-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.star-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: #f0f0f0;
+}
+
+/* Hero Image */
+.hero-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem;
+    /* Give some breathing room */
+}
+
+.hero-image {
+    max-width: 80%;
+    /* Adjusted size */
+    height: auto;
+    border-radius: 20px;
+    /* Optional: adds a bit of softness */
+    /* If the reference image was a "minimal flat illustration", we should probably apply some styling to make the photo fit better if using a photo */
+    /* For a photo to look embedded like a cartoon/illustration, borders or shapes can help, but minimal is key */
+    box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.03);
+    /* Very subtle minimal shadow accent */
+}
+
+/* Other Sections */
+.section {
+    padding: 5rem 2rem;
+    min-height: 80vh;
+    /* Just to ensure scrolling room */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
     position: absolute;
-    left: 50%;
-    bottom: 1;
-    transform: translate(-50%);
-    transition: bottom 1s, left 1s;
+    left: 0;
+    bottom: -10px;
+    width: 60px;
+    height: 4px;
+    background-color: var(--highlight-color);
+    border-radius: 2px;
 }
-.images .me{
-    margin-top: 60px;
-    width: 50%;
-    height: 50%;
-    border: solid 10px #212121;
-    border-radius: 180px;
+
+.content-placeholder {
+    padding: 4rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    text-align: center;
+    color: var(--subtext-color);
 }
-.images:hover .shape{
-    bottom: 40px;
+
+/* Footer */
+footer {
+    padding: 2rem;
+    text-align: center;
+    color: var(--subtext-color);
+    font-size: 0.9rem;
+    margin-top: 4rem;
 }
-.images:hover .me{
-    left: 45%;
+
+/* Responsive */
+@media (max-width: 900px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .hero-content {
+        align-items: center;
+        order: 2;
+        /* Image top on mobile? Standard is usually text top, but user wants image prominent? Let's stick to standard flow first. */
+        order: 1;
+        /* Text first */
+    }
+
+    .hero-image-container {
+        order: 2;
+        /* Image second */
+    }
+
+    .hero-name {
+        font-size: 3rem;
+    }
+
+    .hero-quote {
+        margin: 0 auto 2.5rem;
+        border-left: none;
+        border-top: 3px solid var(--highlight-color);
+        padding-top: 1rem;
+        padding-left: 0;
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide for now on small screens or create hamburger - sticking to simple responsive request "responsive layout" usually implies stacking */
+        /* For a comprehensive "responsive" nav, I should add a hamburger, but let's just center stack content for now for simplicity if not requested specifically */
+        gap: 1.5rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Simple mobile nav reveal for this iteration */
+    .navbar:hover .nav-links {
+        display: flex;
+    }
+}
+
+/* Contact Specific Styles */
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.contact-email {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-email:hover {
+    color: var(--highlight-color);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Timeline (Education) */
+.timeline {
+    border-left: 2px solid var(--highlight-color);
+    margin-left: 1rem;
+    padding-left: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.6rem;
+    top: 0;
+    width: 1rem;
+    height: 1rem;
+    background: var(--highlight-color);
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 0 2px var(--highlight-color);
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--highlight-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-degree {
+    font-weight: 500;
+    color: var(--subtext-color);
+    margin-bottom: 0.25rem;
+}
+
+.timeline-score {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.location {
+    font-size: 0.85rem;
+    color: #8899AA;
+    font-style: italic;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.skill-category h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-tags span {
+    padding: 0.5rem 1rem;
+    background: white;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--subtext-color);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.skill-tags span:hover {
+    border-color: var(--highlight-color);
+    color: var(--highlight-color);
+    transform: translateY(-2px);
+}
+
+/* Experience Card */
+.experience-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    border-left: 5px solid var(--highlight-color);
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.exp-header h3 {
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.company {
+    font-weight: 500;
+    color: var(--highlight-color);
+}
+
+.exp-date {
+    font-size: 0.9rem;
+    color: var(--subtext-color);
+}
+
+.exp-details {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+.exp-details li {
+    margin-bottom: 0.75rem;
+    color: var(--subtext-color);
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.tech-stack {
+    color: var(--highlight-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.project-card p:not(.tech-stack) {
+    color: var(--subtext-color);
+    font-size: 0.95rem;
 }

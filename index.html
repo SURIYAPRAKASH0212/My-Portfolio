@@ -1,34 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="images/mecrop.png">
+    <title>Suriyaprakash S | Frontend Developer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="hero">
-        <nav>
-            <img src="images/myname.jpg" alt="SURIYAPRAKASH S" class="logo">
-            <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">SKILL</a></li>
-                <li><a href="#">EDUCATION</a></li>
-                <li><a href="#">ACHIEVEMENT</a></li>
-                <li><a href="#">HIRE ME</a></li>                
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Suriyaprakash S</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact Me</a></li>
             </ul>
-        </nav>
-        <div class="detail">
-            <h1>I,m <span>Suriyaprakash S</span></h1>
-            <p>Welcome to my official portfolio website,
-                <br> where I share my work and web development journey. 
-            </p>
-            <a href="#">DOWNLOAD CV</a>
         </div>
-        <div class="images">
-            <img src="images/mecrop.png" class="me">
-        </div>
-    </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-name">Suriyaprakash S</h1>
+                    <h2 class="hero-role">( Frontend Developer )</h2>
+                    <p class="hero-quote">
+                        "Simplicity is the soul of implementation."
+                    </p>
+
+                    <div class="social-icons">
+                        <a href="https://github.com/SURIYAPRAKASH0212" target="_blank" aria-label="Github"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/suriyaprakash-s-9302a6352/" target="_blank"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=suriya22714@gmail.com" target="_blank"
+                            aria-label="Gmail"><i class="fas fa-envelope"></i></a>
+                        <a href="https://x.com/suriya022714" target="_blank" aria-label="Twitter"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/suriya_prakash2006/" target="_blank"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="https://github.com/SURIYAPRAKASH0212" target="_blank" class="star-btn">
+                            <span>⭐</span> Star Me on Github
+                        </a>
+                        <a href="Suriya's Resume.pdf" download="Suriyaprakash_Resume" class="resume-btn">
+                            <i class="fas fa-download"></i> Resume
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <img src="assets/images/profile.jpg" alt="Suriyaprakash S - Frontend Developer" class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024 - 2028</div>
+                        <div class="timeline-content">
+                            <h3>Bannari Amman Institute of Technology</h3>
+                            <p class="timeline-degree">B.Tech in Artificial Intelligence and Machine Learning</p>
+                            <p class="timeline-score">CGPA: 7.45 (Sem 2)</p>
+                            <span class="location">Sathyamangalam, Tamilnadu</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - 2024</div>
+                        <div class="timeline-content">
+                            <h3>Government Higher Secondary School</h3>
+                            <p class="timeline-degree">Grade 12 in Bio-Maths</p>
+                            <p class="timeline-score">Percentage: 85.16%</p>
+                            <span class="location">Kullanaickanpalayam, Tamilnadu</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2022</div>
+                        <div class="timeline-content">
+                            <h3>Government High School</h3>
+                            <p class="timeline-degree">SSLC</p>
+                            <p class="timeline-score">Percentage: 76.8%</p>
+                            <span class="location">Avathipalayam, Tamilnadu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-tags">
+                            <span>Python</span><span>Java</span><span>C</span><span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frameworks</h3>
+                        <div class="skill-tags">
+                            <span>Django</span><span>React</span><span>Angular</span><span>HTML</span><span>CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <div class="skill-tags">
+                            <span>MySQL</span><span>SQLite</span><span>PostgreSQL</span><span>MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Soft Skills</h3>
+                        <div class="skill-tags">
+                            <span>Git</span><span>VS Code</span><span>Canva</span><span>Problem
+                                Solving</span><span>Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="experience-card">
+                    <div class="exp-header">
+                        <h3>Full Stack Development Intern</h3>
+                        <span class="company">Technohacks Solutions Pvt. Ltd.</span>
+                        <span class="exp-date">July - Aug 2024</span>
+                    </div>
+                    <ul class="exp-details">
+                        <li>Developed a responsive e-commerce website using HTML, CSS, and JavaScript with product
+                            listing and cart functionality.</li>
+                        <li>Built a weather checking web application using a public API to display real-time weather
+                            data.</li>
+                        <li>Implemented dynamic UI updates and basic error handling using JavaScript.</li>
+                        <li>Gained hands-on experience in frontend development, API integration, and clean coding
+                            practices.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Travel Agency Website</h3>
+                        <p class="tech-stack">JavaScript, HTML, CSS</p>
+                        <p>Created a travel agency website enabling users to view destinations, select tour packages,
+                            and complete package bookings with a smooth user flow.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>E-Commerce Website</h3>
+                        <p class="tech-stack">JavaScript, HTML, CSS</p>
+                        <p>Built a responsive e-commerce website with dynamic product listing and shopping cart
+                            functionality using HTML, CSS, and JavaScript.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Weather Checking Website</h3>
+                        <p class="tech-stack">JavaScript, HTML, CSS</p>
+                        <p>Built a weather checking web application using a public API to display real-time weather
+                            data.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Billing Website</h3>
+                        <p class="tech-stack">JavaScript, HTML, CSS</p>
+                        <p>Built a responsive billing website with dynamic product listing and shopping cart
+                            functionality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="content-placeholder contact-content">
+                    <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=suriya22714@gmail.com" target="_blank"
+                        class="contact-email">
+                        <i class="fas fa-envelope"></i> suriya22714@gmail.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Suriyaprakash S. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
