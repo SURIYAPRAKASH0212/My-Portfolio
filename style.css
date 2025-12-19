@@ -408,9 +408,23 @@ footer {
     margin-bottom: 0.5rem;
 }
 
+.edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.edu-logo {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+}
+
 .timeline-content h3 {
     font-size: 1.25rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0;
 }
 
 .timeline-degree {
@@ -512,6 +526,31 @@ footer {
     color: var(--subtext-color);
 }
 
+.exp-footer {
+    margin-top: 1.5rem;
+}
+
+.cert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background-color: transparent;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--highlight-color);
+    border: 1px solid var(--highlight-color);
+    transition: all 0.3s ease;
+}
+
+.cert-btn:hover {
+    background-color: var(--highlight-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 180, 0, 0.2);
+    transform: translateY(-2px);
+}
+
 /* Projects Grid */
 .projects-grid {
     display: grid;
@@ -549,4 +588,158 @@ footer {
 .project-card p:not(.tech-stack) {
     color: var(--subtext-color);
     font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.live-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--highlight-color);
+    width: fit-content;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.live-btn:hover {
+    color: var(--text-color);
+    border-bottom-color: var(--highlight-color);
+}
+
+/* Contact Section */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px var(--shadow-color);
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.contact-info p {
+    color: var(--subtext-color);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.contact-method i {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 180, 0, 0.1);
+    color: var(--highlight-color);
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.contact-method:hover {
+    color: var(--highlight-color);
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 1rem;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(255, 180, 0, 0.1);
+}
+
+.submit-btn {
+    padding: 1rem 2rem;
+    background: var(--highlight-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    align-self: flex-start;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 180, 0, 0.3);
+}
+
+.form-status {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Responsive Contact */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 2rem;
+    }
 }
