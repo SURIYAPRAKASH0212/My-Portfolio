@@ -822,4 +822,83 @@ footer {
     text-align: center;
 }
 
-/* Responsive Contact */
+/* Mobile Devices (Phones, less than 768px) */
+@media (max-width: 768px) {
+    .hero-name {
+        font-size: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .projects-grid,
+    .skills-grid {
+        grid-template-columns: 1fr;
+        /* Force single column */
+    }
+
+    .contact-container {
+        padding: 1.5rem;
+    }
+
+    .form-group textarea {
+        min-height: 120px;
+    }
+
+    .timeline::before {
+        left: 0.5rem;
+        /* Adjust line position if needed, or keep as is */
+    }
+}
+
+/* Small Mobile Devices (less than 480px) */
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-name {
+        font-size: 1.75rem;
+    }
+
+    .hero-role {
+        font-size: 1.1rem;
+    }
+
+    .hero-container {
+        padding: 0 1rem;
+    }
+
+    .hero-image {
+        max-width: 80%;
+    }
+
+    .section {
+        padding: 3rem 1rem;
+    }
+
+    .timeline {
+        margin-left: 0;
+        padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+        left: -1.9rem;
+        /* Adjust dot position */
+    }
+
+    .experience-card {
+        padding: 1.5rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
+    }
+}
