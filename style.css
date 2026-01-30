@@ -11,19 +11,14 @@
 
 [data-theme="dark"] {
     --bg-color: #0d1117;
-    /* Darker Github-like background */
     --text-color: #c9d1d9;
-    /* Light gray text */
     --highlight-color: #FFB400;
-    /* Keep accent same or adjust */
     --card-bg: #FFFFFF;
-    /* High contrast white cards in dark mode */
     --subtext-color: #8b949e;
     --shadow-color: rgba(0, 0, 0, 0.5);
     --nav-bg: rgba(13, 17, 23, 0.95);
 }
 
-/* Force dark text inside white cards in dark mode */
 [data-theme="dark"] .contact-container,
 [data-theme="dark"] .project-card,
 [data-theme="dark"] .experience-card,
@@ -46,7 +41,6 @@
 
 [data-theme="dark"] .skill-category h3 {
     color: var(--text-color);
-    /* Headings outside cards stay light */
 }
 
 * {
@@ -77,13 +71,11 @@ ul {
     list-style: none;
 }
 
-/* Navbar */
 .navbar {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    /* Changed to span full width but aligned right content */
     padding: 1.5rem 3rem;
     z-index: 1000;
     z-index: 1000;
@@ -136,7 +128,6 @@ ul {
     width: 100%;
 }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -154,8 +145,6 @@ ul {
 
 
 
-/* Theme Toggle Button */
-/* Switch Toggle */
 .switch {
     position: relative;
     display: inline-block;
@@ -214,7 +203,6 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-/* Icons inside switch */
 .slider .fa-sun {
     color: #f39c12;
     font-size: 10px;
@@ -229,8 +217,6 @@ input:checked+.slider:before {
 }
 
 
-
-/* Hero Section */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -282,7 +268,6 @@ input:checked+.slider:before {
     max-width: 90%;
 }
 
-/* Social Icons */
 .social-icons {
     display: flex;
     gap: 1.5rem;
@@ -310,14 +295,12 @@ input:checked+.slider:before {
     box-shadow: 0 5px 15px var(--shadow-color);
 }
 
-/* Hero Buttons */
 .hero-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
 }
 
-/* Star Button */
 .star-btn {
     display: inline-flex;
     align-items: center;
@@ -327,7 +310,6 @@ input:checked+.slider:before {
     border-radius: 50px;
     font-weight: 600;
     color: var(--text-color);
-    /* Use text color instead of subtext */
     box-shadow: none;
     transition: all 0.3s ease;
     border: 1px solid #E0E0E0;
@@ -360,33 +342,23 @@ input:checked+.slider:before {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* Hero Image */
 .hero-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     padding: 2rem;
-    /* Give some breathing room */
 }
 
 .hero-image {
     max-width: 80%;
-    /* Adjusted size */
     height: auto;
     border-radius: 20px;
-    /* Optional: adds a bit of softness */
-    /* If the reference image was a "minimal flat illustration", we should probably apply some styling to make the photo fit better if using a photo */
-    /* For a photo to look embedded like a cartoon/illustration, borders or shapes can help, but minimal is key */
     box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.03);
-    /* Very subtle minimal shadow accent */
 }
-
-/* Other Sections */
 .section {
     padding: 5rem 2rem;
     min-height: 80vh;
-    /* Just to ensure scrolling room */
 }
 
 .container {
@@ -422,7 +394,6 @@ input:checked+.slider:before {
     color: var(--subtext-color);
 }
 
-/* Footer */
 footer {
     padding: 2rem;
     text-align: center;
@@ -430,9 +401,6 @@ footer {
     font-size: 0.9rem;
     margin-top: 4rem;
 }
-
-/* Responsive */
-/* Responsive */
 @media (max-width: 900px) {
     .navbar {
         padding: 1rem 1.5rem;
@@ -450,7 +418,6 @@ footer {
     .menu-toggle {
         display: flex;
         z-index: 1001;
-        /* Above the menu */
     }
 
     .nav-links {
@@ -474,8 +441,6 @@ footer {
     .nav-links.active {
         right: 0;
     }
-
-    /* Hamburger Animation when active */
     .menu-toggle.is-active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -493,24 +458,12 @@ footer {
         text-align: center;
         gap: 3rem;
         flex-direction: column-reverse;
-        /* Attempting to fix order */
         display: flex;
-        /* Override grid for better order control if needed, or stick to grid */
     }
 
-    /* Ensuring image is on top for mobile as per common design, or text top? 
-       Let's stick to valid grid re-ordering or flex. 
-       Grid is usually easier. 
-    */
     .hero-container {
         display: flex;
         flex-direction: column-reverse;
-        /* Text bottom (1st in HTML), Image top (2nd in HTML) -> No, Wait. 
-        HTML: Text (hero-content) is 1st. Image (hero-image-container) is 2nd. 
-        column-reverse puts 2nd on top, 1st on bottom. 
-        Let's try standard stacking first: Text top, Image bottom. 
-        flex-direction: column;
-        */
         flex-direction: column;
     }
 
@@ -525,7 +478,6 @@ footer {
 
     .hero-image {
         max-width: 60%;
-        /* Smaller on mobile */
     }
 
     .hero-name {
@@ -544,14 +496,12 @@ footer {
         padding-left: 0;
     }
 
-    /* Contact Section Responsive */
     .contact-container {
         grid-template-columns: 1fr;
         gap: 3rem;
         padding: 2rem;
     }
 
-    /* Timeline Responsive */
     .timeline {
         padding-left: 1.5rem;
     }
@@ -561,7 +511,6 @@ footer {
     }
 }
 
-/* Contact Specific Styles */
 .contact-content {
     display: flex;
     flex-direction: column;
@@ -586,7 +535,6 @@ footer {
     background: rgba(0, 0, 0, 0.02);
 }
 
-/* Timeline (Education) */
 .timeline {
     border-left: 2px solid var(--highlight-color);
     margin-left: 1rem;
@@ -655,7 +603,6 @@ footer {
     font-style: italic;
 }
 
-/* Skills Grid */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -693,7 +640,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* LeetCode Dashboard */
 .leetcode-dashboard {
     display: flex;
     flex-direction: column;
@@ -721,7 +667,6 @@ footer {
     overflow: hidden;
 }
 
-/* Stats Card */
 .stats-content {
     display: flex;
     align-items: center;
@@ -739,7 +684,6 @@ footer {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    /* Default gradient, will be updated by JS */
     background: conic-gradient(#FFA116 0deg, #3E3E3E 0deg);
     display: flex;
     justify-content: center;
@@ -818,7 +762,6 @@ footer {
     margin-left: 2px;
 }
 
-/* Badges Card */
 .badges-header {
     display: flex;
     justify-content: space-between;
@@ -875,7 +818,6 @@ footer {
 }
 
 
-/* Activity Card (Heatmap) */
 .activity-card {
     min-height: 200px;
 }
@@ -903,21 +845,17 @@ footer {
 
 .heatmap-container {
     overflow-x: auto;
-    /* Allow scrolling on small screens */
 }
 
 .heatmap-grid {
     display: grid;
-    /* 53 weeks columns */
     grid-template-columns: repeat(53, 1fr);
-    /* 7 days */
     grid-template-rows: repeat(7, 1fr);
     grid-auto-flow: column;
     gap: 3px;
     margin-bottom: 0.5rem;
     width: 100%;
     min-width: 600px;
-    /* Ensure squares don't get too small */
 }
 
 .heatmap-cell {
@@ -925,10 +863,8 @@ footer {
     height: 10px;
     border-radius: 2px;
     background-color: #383838;
-    /* Inactive Color */
 }
 
-/* Activity Levels */
 .level-0 {
     background-color: #383838;
 }
@@ -958,7 +894,6 @@ footer {
     margin-top: 5px;
 }
 
-/* LeetCode Action Button */
 .leetcode-action {
     display: flex;
     justify-content: center;
@@ -975,7 +910,6 @@ footer {
     font-weight: 700;
     font-size: 1.1rem;
     color: white;
-    /* Force white text */
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 161, 22, 0.3);
     border: none;
@@ -999,8 +933,6 @@ footer {
     padding-left: 10px;
 }
 
-
-/* Responsiveness Updates */
 @media (max-width: 768px) {
     .dashboard-row {
         flex-direction: column;
@@ -1023,7 +955,6 @@ footer {
     }
 }
 
-/* Experience Card */
 .experience-card {
     background: white;
     padding: 2.5rem;
@@ -1091,7 +1022,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Projects Grid */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1150,7 +1080,6 @@ footer {
     border-bottom-color: var(--highlight-color);
 }
 
-/* Contact Section */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -1216,7 +1145,6 @@ footer {
     color: var(--highlight-color);
 }
 
-/* Contact Form */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -1302,7 +1230,6 @@ footer {
     font-weight: 500;
 }
 
-/* Scroll to Top Button */
 #scrollTopBtn {
     display: none;
     position: fixed;
@@ -1330,7 +1257,6 @@ footer {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Mobile Devices (Phones, less than 768px) */
 @media (max-width: 768px) {
     .hero-name {
         font-size: 2rem;
@@ -1349,7 +1275,6 @@ footer {
     .projects-grid,
     .skills-grid {
         grid-template-columns: 1fr;
-        /* Force single column */
     }
 
     .contact-container {
@@ -1362,11 +1287,9 @@ footer {
 
     .timeline::before {
         left: 0.5rem;
-        /* Adjust line position if needed, or keep as is */
     }
 }
 
-/* Small Mobile Devices (less than 480px) */
 @media (max-width: 480px) {
     .section-title {
         font-size: 1.75rem;
@@ -1399,7 +1322,6 @@ footer {
 
     .timeline-item::before {
         left: -1.9rem;
-        /* Adjust dot position */
     }
 
     .experience-card {
