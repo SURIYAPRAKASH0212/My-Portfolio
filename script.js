@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).then(response => {
             if (response.ok) {
                 status.innerHTML = "Thanks for your message! I'll get back to you soon.";
-                status.style.color = "#4CAF50"; 
+                status.style.color = "#4CAF50";
                 form.reset();
             } else {
                 response.json().then(data => {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         status.innerHTML = "Oops! There was a problem submitting your form."
                     }
-                    status.style.color = "#FF0000"; 
+                    status.style.color = "#FF0000";
                 })
             }
         }).catch(error => {
@@ -146,43 +146,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const leetcodeDashboard = document.querySelector('.leetcode-dashboard');
     if (leetcodeDashboard) {
         const username = 'SURIYA0212';
-        fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    document.getElementById('total-solved').textContent = data.totalSolved;
-                    document.getElementById('easy-solved').textContent = data.easySolved;
-                    document.getElementById('medium-solved').textContent = data.mediumSolved;
-                    document.getElementById('hard-solved').textContent = data.hardSolved;
+        Promise.all([
+            fetch(`https://alfa-leetcode-api.onrender.com/${username}/solved`),
+            fetch(`https://alfa-leetcode-api.onrender.com/${username}/calendar`)
+        ])
+            .then(responses => Promise.all(responses.map(res => res.json())))
+            .then(([solvedData, calendarData]) => {
+                const totalEasy = 862;
+                const totalMedium = 1819;
+                const totalHard = 813;
+                const totalQuestions = totalEasy + totalMedium + totalHard;
 
-                    document.getElementById('total-easy').textContent = data.totalEasy;
-                    document.getElementById('total-medium').textContent = data.totalMedium;
-                    document.getElementById('total-hard').textContent = data.totalHard;
+                document.getElementById('total-solved').textContent = solvedData.solvedProblem;
+                document.getElementById('easy-solved').textContent = solvedData.easySolved;
+                document.getElementById('medium-solved').textContent = solvedData.mediumSolved;
+                document.getElementById('hard-solved').textContent = solvedData.hardSolved;
 
+                document.getElementById('total-easy').textContent = totalEasy;
+                document.getElementById('total-medium').textContent = totalMedium;
+                document.getElementById('total-hard').textContent = totalHard;
 
-                    const totalQ = data.totalQuestions;
-                    const easyDeg = (data.easySolved / totalQ) * 360;
-                    const medDeg = (data.mediumSolved / totalQ) * 360;
-                    const hardDeg = (data.hardSolved / totalQ) * 360;
+                const easyDeg = (solvedData.easySolved / totalQuestions) * 360;
+                const medDeg = (solvedData.mediumSolved / totalQuestions) * 360;
+                const hardDeg = (solvedData.hardSolved / totalQuestions) * 360;
 
-                    const circle = document.getElementById('total-progress-circle');
-                    circle.style.background = `conic-gradient(
-                        #FFA116 0deg ${easyDeg + medDeg + hardDeg}deg,
-                        #3E3E3E ${easyDeg + medDeg + hardDeg}deg 360deg
-                    )`;
+                const circle = document.getElementById('total-progress-circle');
+                circle.style.background = `conic-gradient(
+                    #FFA116 0deg ${easyDeg + medDeg + hardDeg}deg,
+                    #3E3E3E ${easyDeg + medDeg + hardDeg}deg 360deg
+                )`;
 
-                    const calendar = data.submissionCalendar;
-                    const stats = processHeatmapData(calendar);
+                const calendar = JSON.parse(calendarData.submissionCalendar);
+                const stats = processHeatmapData(calendar);
 
-                    document.getElementById('total-submissions').textContent = stats.totalSubmissions;
-                    document.getElementById('active-days').textContent = stats.activeDays;
-                    document.getElementById('max-streak').textContent = stats.maxStreak;
+                document.getElementById('total-submissions').textContent = stats.totalSubmissions;
+                document.getElementById('active-days').textContent = stats.activeDays;
+                document.getElementById('max-streak').textContent = stats.maxStreak;
 
-                    renderHeatmap(calendar);
-
-                } else {
-                    console.error('Failed to fetch LeetCode stats');
-                }
+                renderHeatmap(calendar);
             })
             .catch(error => console.error('Error fetching LeetCode stats:', error));
     }
@@ -235,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let currentDate = new Date(oneYearAgo);
 
-        for (let i = 0; i < 371; i++) { 
+        for (let i = 0; i < 371; i++) {
 
             const dateKey = currentDate.toISOString().split('T')[0];
 
