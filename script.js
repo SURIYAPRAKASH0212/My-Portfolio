@@ -146,29 +146,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const leetcodeDashboard = document.querySelector('.leetcode-dashboard');
     if (leetcodeDashboard) {
         const username = 'SURIYA0212';
-        Promise.all([
-            fetch(`https://alfa-leetcode-api.onrender.com/${username}/solved`),
-            fetch(`https://alfa-leetcode-api.onrender.com/${username}/calendar`)
-        ])
-            .then(responses => Promise.all(responses.map(res => res.json())))
-            .then(([solvedData, calendarData]) => {
-                const totalEasy = 862;
-                const totalMedium = 1819;
-                const totalHard = 813;
-                const totalQuestions = totalEasy + totalMedium + totalHard;
+        fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status !== 'success') {
+                    console.error('LeetCode API returned error:', data.message);
+                    return;
+                }
 
-                document.getElementById('total-solved').textContent = solvedData.solvedProblem;
-                document.getElementById('easy-solved').textContent = solvedData.easySolved;
-                document.getElementById('medium-solved').textContent = solvedData.mediumSolved;
-                document.getElementById('hard-solved').textContent = solvedData.hardSolved;
+                const totalEasy = data.totalEasy;
+                const totalMedium = data.totalMedium;
+                const totalHard = data.totalHard;
+                const totalQuestions = data.totalQuestions;
+
+                document.getElementById('total-solved').textContent = data.totalSolved;
+                document.getElementById('easy-solved').textContent = data.easySolved;
+                document.getElementById('medium-solved').textContent = data.mediumSolved;
+                document.getElementById('hard-solved').textContent = data.hardSolved;
 
                 document.getElementById('total-easy').textContent = totalEasy;
                 document.getElementById('total-medium').textContent = totalMedium;
                 document.getElementById('total-hard').textContent = totalHard;
 
-                const easyDeg = (solvedData.easySolved / totalQuestions) * 360;
-                const medDeg = (solvedData.mediumSolved / totalQuestions) * 360;
-                const hardDeg = (solvedData.hardSolved / totalQuestions) * 360;
+                const easyDeg = (data.easySolved / totalQuestions) * 360;
+                const medDeg = (data.mediumSolved / totalQuestions) * 360;
+                const hardDeg = (data.hardSolved / totalQuestions) * 360;
 
                 const circle = document.getElementById('total-progress-circle');
                 circle.style.background = `conic-gradient(
@@ -176,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     #3E3E3E ${easyDeg + medDeg + hardDeg}deg 360deg
                 )`;
 
-                const calendar = JSON.parse(calendarData.submissionCalendar);
+                const calendar = data.submissionCalendar; // Already an object
                 const stats = processHeatmapData(calendar);
 
                 document.getElementById('total-submissions').textContent = stats.totalSubmissions;
