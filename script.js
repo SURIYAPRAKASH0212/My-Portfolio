@@ -146,39 +146,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const leetcodeDashboard = document.querySelector('.leetcode-dashboard');
     if (leetcodeDashboard) {
         const username = 'SURIYA0212';
-        fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status !== 'success') {
-                    console.error('LeetCode API returned error:', data.message);
-                    return;
+
+        Promise.all([
+            fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${username}`),
+            fetch(`https://alfa-leetcode-api.onrender.com/${username}/calendar`)
+        ])
+            .then(async ([profileRes, calendarRes]) => {
+                if (!profileRes.ok || !calendarRes.ok) {
+                    throw new Error('One or more API requests failed');
                 }
 
-                const totalEasy = data.totalEasy;
-                const totalMedium = data.totalMedium;
-                const totalHard = data.totalHard;
-                const totalQuestions = data.totalQuestions;
+                const profileData = await profileRes.json();
+                const calendarData = await calendarRes.json();
 
-                document.getElementById('total-solved').textContent = data.totalSolved;
-                document.getElementById('easy-solved').textContent = data.easySolved;
-                document.getElementById('medium-solved').textContent = data.mediumSolved;
-                document.getElementById('hard-solved').textContent = data.hardSolved;
+                // Profile Data Mapping
+                const totalSolved = profileData.totalSolved;
+                const easySolved = profileData.easySolved;
+                const mediumSolved = profileData.mediumSolved;
+                const hardSolved = profileData.hardSolved;
+
+                const totalQuestions = profileData.totalQuestions;
+                const totalEasy = profileData.totalEasy;
+                const totalMedium = profileData.totalMedium;
+                const totalHard = profileData.totalHard;
+
+                document.getElementById('total-solved').textContent = totalSolved;
+                document.getElementById('easy-solved').textContent = easySolved;
+                document.getElementById('medium-solved').textContent = mediumSolved;
+                document.getElementById('hard-solved').textContent = hardSolved;
 
                 document.getElementById('total-easy').textContent = totalEasy;
                 document.getElementById('total-medium').textContent = totalMedium;
                 document.getElementById('total-hard').textContent = totalHard;
 
-                const easyDeg = (data.easySolved / totalQuestions) * 360;
-                const medDeg = (data.mediumSolved / totalQuestions) * 360;
-                const hardDeg = (data.hardSolved / totalQuestions) * 360;
+                const easyDeg = (easySolved / totalQuestions) * 360;
+                const medDeg = (mediumSolved / totalQuestions) * 360;
+                const hardDeg = (hardSolved / totalQuestions) * 360;
 
                 const circle = document.getElementById('total-progress-circle');
                 circle.style.background = `conic-gradient(
-                    #FFA116 0deg ${easyDeg + medDeg + hardDeg}deg,
-                    #3E3E3E ${easyDeg + medDeg + hardDeg}deg 360deg
-                )`;
+                #FFA116 0deg ${easyDeg}deg,
+                #FFB800 ${easyDeg}deg ${easyDeg + medDeg}deg,
+                #F63737 ${easyDeg + medDeg}deg 360deg
+            )`;
+                // Note: Adjusted gradient colors/stops slightly to ensure correct stacking
+                // Original: 0deg -> (easy+med+hard) ... wait, the original logic was:
+                // easyDeg + medDeg + hardDeg as the end of the colored part?
+                // Let's stick to the original logic if possible, but the original was:
+                // #FFA116 0deg ${easyDeg + medDeg + hardDeg}deg
+                // #3E3E3E ...
+                // This meant it was ONE color for all solved? No, that looks like it only showed "Total Solved" as a chunk.
+                // But the variables were named easyDeg...
+                // Actually, looking at the original code:
+                // #FFA116 0deg ${easyDeg + medDeg + hardDeg}deg
+                // This implies a single color (#FFA116) representing the TOTAL solved percentage.
+                // If I want to match that exact behavior:
 
-                const calendar = data.submissionCalendar; // Already an object
+                const totalDeg = (totalSolved / totalQuestions) * 360;
+                circle.style.background = `conic-gradient(
+                #FFA116 0deg ${totalDeg}deg,
+                #3E3E3E ${totalDeg}deg 360deg
+            )`;
+
+
+                let calendar = calendarData.submissionCalendar;
+                if (typeof calendar === 'string') {
+                    try {
+                        calendar = JSON.parse(calendar);
+                    } catch (e) {
+                        console.error('Failed to parse submissionCalendar', e);
+                        calendar = {};
+                    }
+                }
+
                 const stats = processHeatmapData(calendar);
 
                 document.getElementById('total-submissions').textContent = stats.totalSubmissions;

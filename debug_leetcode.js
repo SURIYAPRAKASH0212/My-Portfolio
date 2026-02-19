@@ -1,47 +1,52 @@
 const https = require('https');
 
 const username = 'SURIYA0212';
-const solvedUrl = `https://alfa-leetcode-api.onrender.com/${username}/solved`;
+const profileUrl = `https://alfa-leetcode-api.onrender.com/userProfile/${username}`;
 const calendarUrl = `https://alfa-leetcode-api.onrender.com/${username}/calendar`;
 
-function fetchData(url) {
+function fetch(url) {
     return new Promise((resolve, reject) => {
         https.get(url, (res) => {
             let data = '';
-            res.on('data', (chunk) => data += chunk);
+            res.on('data', chunk => data += chunk);
             res.on('end', () => {
                 try {
                     resolve(JSON.parse(data));
                 } catch (e) {
-                    console.log(`Error parsing JSON for ${url}:`, data);
-                    resolve(data);
+                    console.log('Error parsing JSON from', url);
+                    resolve({});
                 }
             });
-        }).on('error', (err) => reject(err));
+        }).on('error', reject);
     });
 }
 
 async function check() {
-    console.log('Fetching Solved Data...');
+    console.log('Fetching Profile Data...');
     try {
-        const solved = await fetchData(solvedUrl);
-        console.log('Solved Data:', JSON.stringify(solved, null, 2));
+        const profile = await fetch(profileUrl);
+        console.log('Total Solved:', profile.totalSolved);
+        console.log('Easy:', profile.easySolved, 'Medium:', profile.mediumSolved, 'Hard:', profile.hardSolved);
+        console.log('Total Questions:', profile.totalQuestions);
     } catch (e) {
-        console.error('Error fetching solved data:', e.message);
+        console.error('Error fetching profile:', e.message);
     }
 
     console.log('\nFetching Calendar Data...');
     try {
-        const calendar = await fetchData(calendarUrl);
-        // Calendar data might be huge, so just print a snippet or summary
-        if (calendar.submissionCalendar) {
-            console.log('Calendar Data (summary):', "Submission calendar present");
-            // console.log('Calendar Data:', JSON.stringify(calendar, null, 2));
-        } else {
-            console.log('Calendar Data:', JSON.stringify(calendar, null, 2));
+        const calendarData = await fetch(calendarUrl);
+        let calendar = calendarData.submissionCalendar;
+        if (typeof calendar === 'string') {
+            try {
+                calendar = JSON.parse(calendar);
+                console.log('Calendar parsed from string.');
+            } catch (e) {
+                console.log('Failed to parse calendar string');
+            }
         }
+        console.log('Calendar Entries:', Object.keys(calendar || {}).length);
     } catch (e) {
-        console.error('Error fetching calendar data:', e.message);
+        console.error('Error fetching calendar:', e.message);
     }
 }
 
