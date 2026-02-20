@@ -149,15 +149,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         Promise.all([
             fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${username}`),
-            fetch(`https://alfa-leetcode-api.onrender.com/${username}/calendar`)
+            fetch(`https://alfa-leetcode-api.onrender.com/${username}/calendar`),
+            fetch(`https://alfa-leetcode-api.onrender.com/${username}/badges`)
         ])
-            .then(async ([profileRes, calendarRes]) => {
-                if (!profileRes.ok || !calendarRes.ok) {
+            .then(async ([profileRes, calendarRes, badgesRes]) => {
+                if (!profileRes.ok || !calendarRes.ok || !badgesRes.ok) {
                     throw new Error('One or more API requests failed');
                 }
 
                 const profileData = await profileRes.json();
                 const calendarData = await calendarRes.json();
+                const badgesData = await badgesRes.json();
 
                 // Profile Data Mapping
                 const totalSolved = profileData.totalSolved;
@@ -226,6 +228,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('max-streak').textContent = stats.maxStreak;
 
                 renderHeatmap(calendar);
+
+                // Badges Rendering
+                const badgesCount = badgesData.badgesCount;
+                document.getElementById('badges-count').textContent = badgesCount;
+
+                const badgesBody = document.querySelector('.badges-body');
+                if (badgesData.badges && badgesData.badges.length > 0) {
+                    badgesBody.innerHTML = ''; // Clear existing "locked" badge
+                    badgesData.badges.forEach(badge => {
+                        const badgeItem = document.createElement('div');
+                        badgeItem.className = 'badge-item';
+
+                        // Use the icon URL directly from the API
+                        const iconUrl = badge.icon.startsWith('http') ? badge.icon : `https://leetcode.com${badge.icon}`;
+
+                        badgeItem.innerHTML = `
+                            <img src="${iconUrl}" alt="${badge.displayName}" class="badge-icon" title="${badge.displayName}">
+                            <!-- <span class="badge-name">${badge.displayName}</span> -->
+                        `;
+                        badgesBody.appendChild(badgeItem);
+                    });
+                    // Adjust container style for multiple badges
+                    badgesBody.style.justifyContent = 'flex-start';
+                    badgesBody.style.overflowX = 'auto';
+                    badgesBody.style.padding = '10px 0';
+                }
             })
             .catch(error => console.error('Error fetching LeetCode stats:', error));
     }

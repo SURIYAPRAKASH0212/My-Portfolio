@@ -356,6 +356,7 @@ input:checked+.slider:before {
     border-radius: 20px;
     box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.03);
 }
+
 .section {
     padding: 5rem 2rem;
     min-height: 80vh;
@@ -401,6 +402,7 @@ footer {
     font-size: 0.9rem;
     margin-top: 4rem;
 }
+
 @media (max-width: 900px) {
     .navbar {
         padding: 1rem 1.5rem;
@@ -441,6 +443,7 @@ footer {
     .nav-links.active {
         right: 0;
     }
+
     .menu-toggle.is-active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -700,6 +703,26 @@ footer {
     align-items: center;
     flex-direction: column;
 }
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    min-width: 90px;
+}
+
+.badge-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.badge-icon:hover {
+    transform: scale(1.1);
+}
+
 
 .total-solved-container {
     text-align: center;

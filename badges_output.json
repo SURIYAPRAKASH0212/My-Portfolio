@@ -1,0 +1,31 @@
+{
+  "badgesCount": 1,
+  "badges": [
+    {
+      "id": "9514823",
+      "displayName": "50 Days Badge 2026",
+      "icon": "https://assets.leetcode.com/static_assets/others/50_1080_1080.png",
+      "creationDate": "2026-02-20"
+    }
+  ],
+  "upcomingBadges": [
+    {
+      "name": "Feb LeetCoding Challenge",
+      "icon": "/static/images/badges/dcc-2026-2.png"
+    },
+    {
+      "name": "Mar LeetCoding Challenge",
+      "icon": "/static/images/badges/dcc-2026-3.png"
+    },
+    {
+      "name": "Apr LeetCoding Challenge",
+      "icon": "/static/images/badges/dcc-2026-4.png"
+    }
+  ],
+  "activeBadge": {
+    "id": "9514823",
+    "displayName": "50 Days Badge 2026",
+    "icon": "https://assets.leetcode.com/static_assets/others/50_1080_1080.png",
+    "creationDate": "2026-02-20"
+  }
+}
