@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         badgesBody.appendChild(badgeItem);
                     });
                     // Adjust container style for multiple badges
-                    badgesBody.style.justifyContent = 'flex-start';
+                    badgesBody.style.justifyContent = 'center';
                     badgesBody.style.overflowX = 'auto';
                     badgesBody.style.padding = '10px 0';
                 }
