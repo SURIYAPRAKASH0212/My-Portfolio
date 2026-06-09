@@ -7,6 +7,11 @@
     --shadow-color: rgba(0, 0, 0, 0.08);
     --nav-bg: rgba(245, 245, 245, 0.95);
     --font-main: 'Poppins', 'Inter', sans-serif;
+    --cursor-color: #1A2A44;
+    --cursor-glow: drop-shadow(0 0 3px rgba(26, 42, 68, 0.15));
+    --blob-color-1: rgba(26, 42, 68, 0.03);
+    --blob-color-2: rgba(255, 180, 0, 0.04);
+    --blob-color-3: rgba(26, 42, 68, 0.02);
 }
 
 [data-theme="dark"] {
@@ -17,6 +22,11 @@
     --subtext-color: #8b949e;
     --shadow-color: rgba(0, 0, 0, 0.5);
     --nav-bg: rgba(13, 17, 23, 0.95);
+    --cursor-color: #FFB400;
+    --cursor-glow: drop-shadow(0 0 6px rgba(255, 180, 0, 0.6));
+    --blob-color-1: rgba(255, 180, 0, 0.03);
+    --blob-color-2: rgba(255, 180, 0, 0.04);
+    --blob-color-3: rgba(201, 209, 217, 0.02);
 }
 
 [data-theme="dark"] .contact-container,
@@ -1353,5 +1363,183 @@ footer {
 
     .project-card {
         padding: 1.5rem;
+    }
+}
+
+/* Custom Cursor Hiding (only active when JS applies the class) */
+.custom-cursor-active,
+.custom-cursor-active * {
+    cursor: none !important;
+}
+
+/* Custom Cursor Aim/Scope Container */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    color: var(--cursor-color);
+    filter: var(--cursor-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom Cursor SVG wrapper */
+.custom-cursor .scope-svg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* Text cursor morphing (sleek vertical caret for inputs) */
+.custom-cursor::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 16px;
+    background-color: var(--cursor-color);
+    opacity: 0;
+    border-radius: 1px;
+    transition: opacity 0.2s ease, height 0.2s ease;
+}
+
+.custom-cursor.hover-text .scope-svg {
+    opacity: 0;
+    transform: scale(0.4) rotate(45deg);
+}
+
+.custom-cursor.hover-text::after {
+    opacity: 1;
+}
+
+/* Clickable hover effect (scaling & spinning scope) */
+.custom-cursor.hover-clickable {
+    transform: translate(-50%, -50%) scale(1.35);
+}
+
+.custom-cursor.hover-clickable .scope-svg {
+    transform: rotate(90deg);
+    color: var(--highlight-color);
+}
+
+/* Active click effect (shrinking / compression) */
+.custom-cursor.click-active {
+    transform: translate(-50%, -50%) scale(0.85);
+}
+
+/* Liquid Background Styling */
+.liquid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    filter: url('#gooey');
+}
+
+.liquid-bg .blob {
+    position: absolute;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+}
+
+.liquid-bg .blob1 {
+    width: 450px;
+    height: 450px;
+    background: var(--blob-color-1);
+    top: -5%;
+    left: -5%;
+    animation: drift1 22s infinite alternate ease-in-out;
+}
+
+.liquid-bg .blob2 {
+    width: 550px;
+    height: 550px;
+    background: var(--blob-color-2);
+    bottom: -10%;
+    right: -5%;
+    animation: drift2 28s infinite alternate ease-in-out;
+}
+
+.liquid-bg .blob3 {
+    width: 380px;
+    height: 380px;
+    background: var(--blob-color-3);
+    top: 45%;
+    left: 55%;
+    animation: drift3 20s infinite alternate ease-in-out;
+}
+
+/* Interactive liquid blob */
+.liquid-bg .blob-interactive {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--blob-color-2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Drift animations for liquid backgrounds */
+@keyframes drift1 {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translate(120px, 90px) scale(1.15) rotate(180deg);
+    }
+    100% {
+        transform: translate(-40px, 140px) scale(0.9) rotate(360deg);
+    }
+}
+
+@keyframes drift2 {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(360deg);
+    }
+    50% {
+        transform: translate(-140px, -80px) scale(0.85) rotate(180deg);
+    }
+    100% {
+        transform: translate(90px, 60px) scale(1.1) rotate(0deg);
+    }
+}
+
+@keyframes drift3 {
+    0% {
+        transform: translate(0, 0) scale(0.95);
+    }
+    50% {
+        transform: translate(80px, -120px) scale(1.15);
+    }
+    100% {
+        transform: translate(-70px, 80px) scale(0.9);
+    }
+}
+
+/* Prevent touch issues on mobile for background interactive elements */
+@media (hover: none) {
+    .custom-cursor {
+        display: none !important;
+    }
+    .custom-cursor-active,
+    .custom-cursor-active * {
+        cursor: auto !important;
+    }
+    .liquid-bg .blob-interactive {
+        display: none !important;
     }
 }
