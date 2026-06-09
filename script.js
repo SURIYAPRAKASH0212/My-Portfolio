@@ -348,4 +348,109 @@ document.addEventListener('DOMContentLoaded', () => {
             currentDate.setDate(currentDate.getDate() + 1);
         }
     }
+
+    // Custom Aim/Scope Cursor & Liquid Background Logic
+    const initCursorAndLiquidity = () => {
+        // Only run on devices with hover capability (non-touch)
+        if (window.matchMedia("(hover: none)").matches) return;
+
+        const cursor = document.getElementById('custom-cursor');
+        const interactiveBlob = document.getElementById('liquid-interactive');
+        
+        if (!cursor || !interactiveBlob) return;
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let blobX = mouseX;
+        let blobY = mouseY;
+        let isCursorActive = false;
+
+        // Mouse coordinates update
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (!isCursorActive) {
+                document.documentElement.classList.add('custom-cursor-active');
+                cursor.style.opacity = '1';
+                isCursorActive = true;
+            }
+        });
+
+        // Hide/Show cursor when leaving/entering window
+        document.addEventListener('mouseleave', () => {
+            document.documentElement.classList.remove('custom-cursor-active');
+            cursor.style.opacity = '0';
+            isCursorActive = false;
+        });
+
+        document.addEventListener('mouseenter', () => {
+            document.documentElement.classList.add('custom-cursor-active');
+            cursor.style.opacity = '1';
+            isCursorActive = true;
+        });
+
+        // Click effects
+        window.addEventListener('mousedown', () => {
+            cursor.classList.add('click-active');
+        });
+        window.addEventListener('mouseup', () => {
+            cursor.classList.remove('click-active');
+        });
+
+        // Hover effect detection using event delegation
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target;
+            if (!target) return;
+
+            // Check if hovering a clickable element
+            const isClickable = target.closest('a, button, input[type="submit"], input[type="button"], .menu-toggle, .slider, .social-icons a, [role="button"]');
+            
+            // Check if hovering a text input
+            const isText = target.closest('input[type="text"], input[type="email"], textarea');
+
+            if (isClickable) {
+                cursor.classList.add('hover-clickable');
+            } else if (isText) {
+                cursor.classList.add('hover-text');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            const target = e.target;
+            if (!target) return;
+
+            const isClickable = target.closest('a, button, input[type="submit"], input[type="button"], .menu-toggle, .slider, .social-icons a, [role="button"]');
+            const isText = target.closest('input[type="text"], input[type="email"], textarea');
+
+            if (isClickable) {
+                cursor.classList.remove('hover-clickable');
+            }
+            if (isText) {
+                cursor.classList.remove('hover-text');
+            }
+        });
+
+        // Smooth movement frame update
+        const tick = () => {
+            // Update custom cursor position
+            cursor.style.left = `${mouseX}px`;
+            cursor.style.top = `${mouseY}px`;
+
+            // Interpolate position for interactive liquid blob
+            const lerpFactor = 0.08;
+            blobX += (mouseX - blobX) * lerpFactor;
+            blobY += (mouseY - blobY) * lerpFactor;
+
+            interactiveBlob.style.left = `${blobX}px`;
+            interactiveBlob.style.top = `${blobY}px`;
+
+            requestAnimationFrame(tick);
+        };
+
+        // Start requestAnimationFrame loop
+        requestAnimationFrame(tick);
+    };
+
+    initCursorAndLiquidity();
 });

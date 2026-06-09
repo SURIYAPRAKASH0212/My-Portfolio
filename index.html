@@ -379,6 +379,35 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Liquid Background -->
+    <div class="liquid-bg">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+        <div class="blob-interactive" id="liquid-interactive"></div>
+    </div>
+    <svg style="display: none;">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 45 -18" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Custom Aim/Scope Cursor -->
+    <div class="custom-cursor" id="custom-cursor">
+        <svg class="scope-svg" width="40" height="40" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="11" stroke="currentColor" stroke-width="1.5" fill="none" />
+            <circle cx="20" cy="20" r="2" fill="currentColor" />
+            <line x1="20" y1="2" x2="20" y2="7" stroke="currentColor" stroke-width="1.5" />
+            <line x1="20" y1="33" x2="20" y2="38" stroke="currentColor" stroke-width="1.5" />
+            <line x1="2" y1="20" x2="7" y2="20" stroke="currentColor" stroke-width="1.5" />
+            <line x1="33" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
