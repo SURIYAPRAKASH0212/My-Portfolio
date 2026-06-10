@@ -1,6 +1,6 @@
 const https = require('https');
 
-const username = 'SURIYA0212';
+const username = '7HMByyX1pi';
 const endpoints = [
     `https://alfa-leetcode-api.onrender.com/${username}`,
     `https://alfa-leetcode-api.onrender.com/${username}/solved`,
