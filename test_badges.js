@@ -1,5 +1,5 @@
 const fs = require('fs');
-const username = 'SURIYA0212';
+const username = '7HMByyX1pi';
 const url = `https://alfa-leetcode-api.onrender.com/${username}/badges`;
 
 console.log(`Fetching badges from: ${url}`);

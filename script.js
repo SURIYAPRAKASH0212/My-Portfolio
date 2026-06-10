@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const leetcodeDashboard = document.querySelector('.leetcode-dashboard');
     if (leetcodeDashboard) {
-        const username = 'SURIYA0212';
+        const username = '7HMByyX1pi';
 
         Promise.all([
             fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${username}`),

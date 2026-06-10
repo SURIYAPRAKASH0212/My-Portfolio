@@ -1,6 +1,6 @@
 const https = require('https');
 
-const username = 'SURIYA0212';
+const username = '7HMByyX1pi';
 const url = `https://leetcode-stats-api.herokuapp.com/${username}`;
 
 https.get(url, (res) => {
